@@ -1,6 +1,6 @@
 {
   "name": "@datagica/parse-entities",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Extract named entities from a text using an index",
   "main": "./lib/parse-entities.js",
   "scripts": {

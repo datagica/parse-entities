@@ -12,8 +12,11 @@ describe('@datagica/parse-entities', () => {
       new ParseEntities()
         .parse(`Yesterday we watch the movie good bye lenin. #popcorn`)
         .then(results => {
+          //console.log(JSON.stringify(results, null, 2))
           expect(results).to.be.like([]);
           done();
+        }).catch(err => {
+          console.error(err)
         })
     })
 
@@ -79,7 +82,7 @@ describe('@datagica/parse-entities', () => {
         ]
       }).parse(`Yesterday we watch the movie good bye lenin. #popcorn`)
         .then(results => {
-          // console.log(JSON.stringify(results, null, 2))
+          //console.log(JSON.stringify(results, null, 2))
           expect(results).to.be.like([
             {
               "ngram":"good bye lenin",
@@ -119,7 +122,7 @@ describe('@datagica/parse-entities', () => {
         }).parse(`this is a very large ngram, likely to make it
           crash on other named entity-extraction libraries`)
           .then(results => {
-            // console.log(JSON.stringify(results, null, 2))
+            //console.log(JSON.stringify(results, null, 2))
             expect(results).to.be.like([
               {
                 "ngram":"this is a very large ngram  likely to make it           crash on other named entity-extraction libraries",
@@ -155,7 +158,7 @@ describe('@datagica/parse-entities', () => {
             ]
           }).parse(`participants: marc-olivier abd-al-qadir`)
             .then(results => {
-              // console.log(JSON.stringify(results, null, 2))
+              //console.log(JSON.stringify(results, null, 2))
               expect(results).to.be.like([{
                 "ngram": "marc-olivier",
                 "value": {
