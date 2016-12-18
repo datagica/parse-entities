@@ -49,7 +49,6 @@ describe('@datagica/parse-entities', () => {
             },
             "score":1,
             "position":{
-              "index": 5,
               "begin": 29,
               "end": 43
             }
@@ -90,9 +89,8 @@ describe('@datagica/parse-entities', () => {
                 "title":"Good Bye Lenin!",
                 "type":"Movie"
               },
-              "score":1,
+              "score": 1,
               "position":{
-                "index": 5,
                 "begin": 29,
                 "end": 43
               }
@@ -125,15 +123,14 @@ describe('@datagica/parse-entities', () => {
             //console.log(JSON.stringify(results, null, 2))
             expect(results).to.be.like([
               {
-                "ngram":"this is a very large ngram  likely to make it           crash on other named entity-extraction libraries",
-                "value":{
-                  "data":"this is a very large ngram, likely to make it\n              crash on other named entity-extraction libraries"
+                "ngram": "this is a very large ngram  likely to make it           crash on other named entity-extraction libraries",
+                "value": {
+                  "data": "this is a very large ngram, likely to make it\n              crash on other named entity-extraction libraries"
                 },
-                "score":1,
-                "position":{
-                  "index": 0,
-                  "begin":0,
-                  "end":104
+                "score": 1,
+                "position": {
+                  "begin": 0,
+                  "end": 104
                 }
               }
             ]);
@@ -166,7 +163,6 @@ describe('@datagica/parse-entities', () => {
                 },
                 "score": 1,
                 "position": {
-                  "index": 2,
                   "begin": 14,
                   "end": 26
                 }
@@ -177,7 +173,6 @@ describe('@datagica/parse-entities', () => {
                 },
                 "score": 1,
                 "position": {
-                  "index": 3,
                   "begin": 27,
                   "end": 39
                 }
