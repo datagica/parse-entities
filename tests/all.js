@@ -2,7 +2,7 @@ const chai = require('chai');
 chai.use(require('chai-fuzzy'));
 const expect = chai.expect;
 
-const ParseEntities = require("../lib/parse-entities");
+const ParseEntities = require("../lib/index");
 
 describe('@datagica/parse-entities', () => {
 
@@ -14,10 +14,8 @@ describe('@datagica/parse-entities', () => {
         .then(results => {
           //console.log(JSON.stringify(results, null, 2))
           expect(results).to.be.like([]);
-          done();
-        }).catch(err => {
-          console.error(err)
-        })
+          done()
+        }).catch(err => done(err))
     })
 
     it('should work on basic example', (done) => {
@@ -49,18 +47,16 @@ describe('@datagica/parse-entities', () => {
             },
             "score":1,
             "position":{
+              "sentence": 0,
+              "word": 5,
               "begin": 29,
               "end": 43
             }
           }
         ]);
-
-        done();
-
-      })
-
+        done()
+      }).catch(err => done(err))
     })
-
 
     it('should work on custom fields', (done) => {
       new ParseEntities({
@@ -90,17 +86,16 @@ describe('@datagica/parse-entities', () => {
                 "type":"Movie"
               },
               "score": 1,
-              "position":{
+              "position": {
+                "sentence": 0,
+                "word": 5,
                 "begin": 29,
                 "end": 43
               }
             }
           ]);
-
-          done();
-
-        })
-
+          done()
+        }).catch(err =>done(err))
       })
 
       it('should work on a ridiculously large n-gram arity', (done) => {
@@ -113,32 +108,30 @@ describe('@datagica/parse-entities', () => {
               data: 'this is a small 5gram'
             },
             {
-              data: `this is a very large ngram, likely to make it
-              crash on other named entity-extraction libraries`
+              data: `this is a very large ngram, likely to make it crash on other named entity-extraction libraries`
             },
           ]
         }).parse(`this is a very large ngram, likely to make it
           crash on other named entity-extraction libraries`)
           .then(results => {
-            //console.log(JSON.stringify(results, null, 2))
+            // console.log(JSON.stringify(results, null, 2))
             expect(results).to.be.like([
               {
                 "ngram": "this is a very large ngram  likely to make it           crash on other named entity-extraction libraries",
                 "value": {
-                  "data": "this is a very large ngram, likely to make it\n              crash on other named entity-extraction libraries"
+                  "data": "this is a very large ngram, likely to make it crash on other named entity-extraction libraries"
                 },
                 "score": 1,
                 "position": {
+                  "sentence": 0,
+                  "word": 0,
                   "begin": 0,
                   "end": 104
                 }
               }
-            ]);
-
-            done();
-
-          })
-
+            ])
+            done()
+          }).catch(err => done(err))
         })
 
         it('should work on a single words with hyphen', (done) => {
@@ -163,6 +156,8 @@ describe('@datagica/parse-entities', () => {
                 },
                 "score": 1,
                 "position": {
+                  "sentence": 0,
+                  "word": 2,
                   "begin": 14,
                   "end": 26
                 }
@@ -173,15 +168,14 @@ describe('@datagica/parse-entities', () => {
                 },
                 "score": 1,
                 "position": {
+                  "sentence": 0,
+                  "word": 3,
                   "begin": 27,
                   "end": 39
                 }
               }]);
-
-              done();
-
-            })
-
+              done()
+            }).catch(err => done(err))
           })
   })
 })
