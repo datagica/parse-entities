@@ -1,6 +1,6 @@
 {
   "name": "@datagica/parse-entities",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Extract named entities from a text using an index",
   "main": "./lib/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@datagica/treegram": "^0.2.4"
+    "@datagica/treegram": "^0.2.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",
